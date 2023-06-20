@@ -90,9 +90,36 @@ Let $A \in \R ^{n, n}$ . Show that
 
 Show that 
 
-\begin{equation}
+\begin{equation} \label{eq:exo3}
     E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] = \frac{\sigma^2}{n} \mathrm {Tr} (A^T A)
 \end{equation}
+
+\begin{proof}
+    \begin{align*}
+        E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] &= 
+            \frac{1}{n} \| A \|^2 E_\epsilon \Big[  \| \epsilon \|^2 \Big]
+    \end{align*}
+
+    Since
+    \begin{equation}
+        Var(X) = E(X^2) - E^2(X) 
+    \end{equation}
+    and
+    \begin{equation}
+        E_\epsilon (\epsilon) = 0
+    \end{equation}
+
+    \begin{align*}
+        E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] &=            \frac{1}{n} \| A \|^2 E_\epsilon \Big[ \epsilon ^2 \Big]\\
+            &= \frac{\sigma^2}{n} \| A \|^2
+    \end{align*}
+    
+    Because of \eqref{eq:exo2}
+    
+    \begin{align*}
+        E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] &=  \frac{\sigma^2}{n} \mathrm {Tr} (A^T A)
+    \end{align*}
+\end{proof}
 
 \question{4}
 

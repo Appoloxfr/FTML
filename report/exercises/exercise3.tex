@@ -1,0 +1,104 @@
+\exo{3}
+
+\question{1}
+
+Show that:
+
+\begin{equation} \label{eq:exo1}
+    E \Big[ R_n (\hat{\theta}) \Big] = E_\epsilon \Big[ \frac{1}{n} || (I_n - X (X^T X)^{-1} X^T) \epsilon ||^2 \Big]
+\end{equation}
+
+Where $E_\epsilon$ means that the expected value is over $\epsilon$.\\
+
+\begin{proof}
+    
+    We know that
+    \begin{equation} \label{eq:empirical_risk_rn}
+        R_n(\theta) = \frac{1}{n} || y - X \theta ||^2_2
+    \end{equation}
+    
+    
+    \begin{equation} \label{eq:estimator_empirik}
+        \hat{\theta} = (X^T X)^{-1} X^T y
+    \end{equation}
+
+    \begin{equation} \label{eq:linear_model}
+        y = X \theta + \epsilon
+    \end{equation}
+
+    So according to \eqref{eq:empirical_risk_rn} and \eqref{eq:estimator_empirik}
+    
+    \begin{align*}
+        R_n (\hat{\theta}) &= \frac{1}{n} || y - X \theta ||^2\\
+            &= \frac{1}{n} || y - X (X^TX)^{-1} X^T y ||^2\\
+            &= \frac{1}{n} || (I_n - X (X^TX)^{-1} X^T) y ||^2
+    \end{align*}
+
+    Soit $A = I_n - X (X^T X)^{-1} X^T$ la matrice de projection orthogonale sur $E^\perp$.
+
+    \begin{align*}
+        R_n (\hat{\theta}) &= \frac{1}{n} || A y ||^2\\
+            &= \frac{1}{n} y^T A^T A y 
+    \end{align*}
+
+    Comme $A$ est une matrice de projection sur $E^\perp$: 
+    \begin{enumerate}
+        \item $Im(A) = E^\perp$
+        \item $Rang(A) = dim(E^\perp) = n - d - 1$
+    \end{enumerate}
+
+    \begin{align*}
+        R_n (\hat{\theta}) &= y ^T A A y \\
+            &= y^T A y
+    \end{align*}
+
+    We know that $AX = 0$ and \eqref{eq:linear_model}. So
+
+    \begin{align*}
+         E \Big[ R_n (\hat{\theta}) \Big] &= E \Big [ \frac{1}{n} y^T A y \Big ] \\
+            &= \frac{1}{n}  E \Big [  \epsilon^T A \epsilon \Big ] \\
+            &= \frac{1}{n}  E \Big [  \epsilon^T A^T A \epsilon \Big ] \\
+            &= \frac{1}{n}  E \Big [  || A \epsilon  ||^2 \Big ]
+    \end{align*}
+
+    In conclusion, we find \eqref{eq:exo1}
+    \begin{align*}
+        E \Big[ R_n (\hat{\theta}) \Big] &= \frac{1}{n}  E \Big [  || (I_n - X (X^T X)^{-1} X^T) \epsilon  ||^2 \Big ] \\
+            &= E \Big [ \frac{1}{n}    || (I_n - X (X^T X)^{-1} X^T) \epsilon  ||^2 \Big ]
+    \end{align*}
+    
+\end{proof}
+
+\question{2}
+
+Let $A \in \R ^{n, n}$ . Show that
+
+\begin{equation}
+    		\sum_{(i, j)  \in [1, n]^2} A^2_{ij} =  tr(A^T A)
+\end{equation}
+
+\question{3}
+
+Show that 
+
+\begin{equation}
+    E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] = \frac{\sigma^2}{n} tr(A^T A)
+\end{equation}
+
+\question{4}
+
+We note
+
+\begin{equation}
+    A = I_n - X (X^T X)^-1 X^T
+\end{equation}
+
+Show that
+
+\begin{equation}
+    A^T A = A
+\end{equation}
+
+\question{5}
+
+Conclude

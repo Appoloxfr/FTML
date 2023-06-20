@@ -11,10 +11,10 @@ Show that:
 Where $E_\epsilon$ means that the expected value is over $\epsilon$.\\
 
 \begin{proof}
-    We know that
     \begin{equation} \label{eq:empirical_risk_rn}
         R_n(\theta) = \frac{1}{n} || y - X \theta ||^2_2
     \end{equation}
+    
     
     \begin{equation} \label{eq:estimator_empirik}
         \hat{\theta} = (X^T X)^{-1} X^T y
@@ -39,23 +39,9 @@ Where $E_\epsilon$ means that the expected value is over $\epsilon$.\\
             &= \frac{1}{n} y^T A^T A y 
     \end{align*}
 
-    Comme $A$ est une matrice de projection sur $E^\perp$:
-
-    \begin{enumerate}
-        \item $Im(A) = E^\perp$
-        \item $Rang(A) = dim(E^\perp) = n - d - 1$
-    \end{enumerate}
-
+    
     \begin{align*}
-        R_n (\hat{\theta}) &= y ^T A A y \\
-            &= y^T A y
-    \end{align*}
-
-    We know that $AX = 0$ and \eqref{eq:linear_model}. So
-
-    \begin{align*}
-         E \Big[ R_n (\hat{\theta}) \Big] &= E \Big [ \frac{1}{n} y^T A y \Big ] \\
-            &= \frac{1}{n}  E \Big [  \epsilon^T A \epsilon \Big ] \\
+         E \Big[ R_n (\hat{\theta}) \Big] &= E \Big [ \frac{1}{n} y^T A^T A y \Big ] \\
             &= \frac{1}{n}  E \Big [  \epsilon^T A^T A \epsilon \Big ] \\
             &= \frac{1}{n}  E \Big [  || A \epsilon  ||^2 \Big ]
     \end{align*}
@@ -73,15 +59,39 @@ Where $E_\epsilon$ means that the expected value is over $\epsilon$.\\
 Let $A \in \R ^{n, n}$ . Show that
 
 \begin{equation}
-    		\sum_{(i, j)  \in [1, n]^2} A^2_{ij} =  tr(A^T A)
+    \sum_{(i, j)  \in [1, n]^2} A^2_{ij} =  \mathrm {Tr} (A^T A)
 \end{equation}
+
+
+
+\begin{proof}
+    \begin{equation}
+        \mathrm {Tr} (A) =\sum _{i\in[1, n]} a_{{i\,i}}
+    \end{equation}
+    
+    \begin{align*}
+        \mathrm {Tr} (A^T A) = \sum_{i \in [1, n]} (A^T A)_{ii}
+    \end{align*}
+
+    Because A is a square matrix
+    \begin{align*}
+        (A^T A)_{ii} &= \sum_{j \in [1, n]} (A^T)_{ij} A_{ji} \\
+            &= \sum_{j \in [1, n]} A_{ji} A_{ji}\\
+            &= \sum_{j \in [1, n]} (A_{ji})^2
+    \end{align*}
+
+    \begin{align*}
+         \mathrm {Tr} (A^T A) &= \sum_{i \in [1, n]}  \sum_{j \in [1, n]} (A_{ji})^2\\
+            &= \sum_{(i, j)  \in [1, n]^2} A^2_{ij}      
+    \end{align*}
+\end{proof}
 
 \question{3}
 
 Show that 
 
 \begin{equation}
-    E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] = \frac{\sigma^2}{n} tr(A^T A)
+    E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] = \frac{\sigma^2}{n} \mathrm {Tr} (A^T A)
 \end{equation}
 
 \question{4}

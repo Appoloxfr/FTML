@@ -187,6 +187,16 @@ Conclude that
             &= \frac{\sigma^2}{n} (n - \mathrm {Tr} (X^TX (X^T X)^{-1}))\\
             &= \frac{\sigma^2}{n} (n - \mathrm {Tr} (I_d))\\
             &= \frac{\sigma^2}{n} (n - d)\\
-            &= \frac{n - d}{n} (\sigma^2)\\
+            &= \frac{n - d}{n} \sigma^2\\
     \end{align*}
 \end{proof}
+
+\question{6}
+
+Still in the same setting, what is the expected value of $\frac{\| y - X \hat{\theta} \|_2^2}{n - d}$
+
+\begin{align*}
+    E \Big [ \frac{\| y - X \hat{\theta} \|_2^2}{n - d} \Big ] &= \frac{n}{n - d} E \Big [ R_n(\hat{\theta}) \Big ]\\
+        &= \frac{n}{n-d} \frac{n - d}{n} \sigma^2\\
+        &= \sigma^2
+\end{align*}

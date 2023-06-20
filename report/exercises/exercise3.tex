@@ -58,8 +58,8 @@ Where $E_\epsilon$ means that the expected value is over $\epsilon$.\\
 
 Let $A \in \R ^{n, n}$ . Show that
 
-\begin{equation}
-    \sum_{(i, j)  \in [1, n]^2} A^2_{ij} =  \mathrm {Tr} (A^T A)
+\begin{equation}\label{eq:exo2}
+    \sum_{(i, j)  \in [1, n]^2} A^2_{ij} = \mathrm {Tr} (A^T A)
 \end{equation}
 
 
@@ -156,4 +156,37 @@ Show that
 
 \question{5}
 
-Conclude
+Conclude that
+
+\begin{equation}
+     E \Big[ R_n (\hat{\theta}) \Big] = \frac{n - d}{n} \sigma^2 
+\end{equation}
+
+\begin{proof}
+    We prooved that \eqref{eq:exo1} and \eqref{eq:exo3} so
+    \begin{align*}
+        E \Big[ R_n (\hat{\theta}) \Big] = \frac{\sigma^2}{n} \mathrm {Tr} (A^T A)
+    \end{align*}
+
+    And with \eqref{eq:exo4}
+    \begin{align*}
+        E \Big[ R_n (\hat{\theta}) \Big] &=\frac{\sigma^2}{n}  \mathrm {Tr} (A)\\
+            &= \frac{\sigma^2}{n} \mathrm {Tr} (I_n - X (X^T X)^{-1} X^T)
+    \end{align*}
+
+    \begin{equation}
+        \mathrm {Tr} (A + B) =\mathrm {Tr} (A) + \mathrm {Tr} (B)
+    \end{equation}
+    \begin{equation}
+        \mathrm {Tr} (AB) = \mathrm {Tr} (BA)
+    \end{equation}
+
+    \begin{align*}
+        E \Big[ R_n (\hat{\theta}) \Big]
+            &= \frac{\sigma^2}{n} (\mathrm {Tr} (I_n) - \mathrm {Tr} (X (X^T X)^{-1} X^T))\\
+            &= \frac{\sigma^2}{n} (n - \mathrm {Tr} (X^TX (X^T X)^{-1}))\\
+            &= \frac{\sigma^2}{n} (n - \mathrm {Tr} (I_d))\\
+            &= \frac{\sigma^2}{n} (n - d)\\
+            &= \frac{n - d}{n} (\sigma^2)\\
+    \end{align*}
+\end{proof}

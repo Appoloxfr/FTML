@@ -1,0 +1,8 @@
+pandas
+numpy
+jupyter
+notebook
+matplotlib
+tqdm
+scikit-learn
+black

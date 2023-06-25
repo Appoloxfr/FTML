@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      # Remove output from Jupyter notebooks when committing in branch other than main
+      # This is to avoid merge conflicts
+      - id: jupyter-nb-clear-output
+        name: jupyter-nb-clear-output
+        files: \.ipynb$
+        entry: jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace
+        language: system
+        types: [file]
+        exclude: ^main$
+        stages: [commit]

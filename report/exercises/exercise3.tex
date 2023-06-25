@@ -1,0 +1,202 @@
+\exo{3}
+
+\question{1}
+
+Show that:
+
+\begin{equation} \label{eq:exo1}
+    E \Big[ R_n (\hat{\theta}) \Big] = E_\epsilon \Big[ \frac{1}{n} || (I_n - X (X^T X)^{-1} X^T) \epsilon ||^2 \Big]
+\end{equation}
+
+Where $E_\epsilon$ means that the expected value is over $\epsilon$.\\
+
+\begin{proof}
+    \begin{equation} \label{eq:empirical_risk_rn}
+        R_n(\theta) = \frac{1}{n} || y - X \theta ||^2_2
+    \end{equation}
+    
+    
+    \begin{equation} \label{eq:estimator_empirik}
+        \hat{\theta} = (X^T X)^{-1} X^T y
+    \end{equation}
+
+    \begin{equation} \label{eq:linear_model}
+        y = X \theta + \epsilon
+    \end{equation}
+
+    So according to \eqref{eq:empirical_risk_rn} and \eqref{eq:estimator_empirik}
+    
+    \begin{align*}
+        R_n (\hat{\theta}) &= \frac{1}{n} || y - X \theta ||^2\\
+            &= \frac{1}{n} || y - X (X^TX)^{-1} X^T y ||^2\\
+            &= \frac{1}{n} || (I_n - X (X^TX)^{-1} X^T) y ||^2
+    \end{align*}
+
+    Let $A = I_n - X (X^T X)^{-1} X^T$ be the orthogonal projection matrix on $E^\perp$.
+
+    \begin{align*}
+        R_n (\hat{\theta}) &= \frac{1}{n} || A y ||^2\\
+            &= \frac{1}{n} y^T A^T A y 
+    \end{align*}
+
+    
+    \begin{align*}
+         E \Big[ R_n (\hat{\theta}) \Big] &= E \Big [ \frac{1}{n} y^T A^T A y \Big ] \\
+            &= \frac{1}{n}  E \Big [  \epsilon^T A^T A \epsilon \Big ] \\
+            &= \frac{1}{n}  E \Big [  || A \epsilon  ||^2 \Big ]
+    \end{align*}
+
+    In conclusion, we find \eqref{eq:exo1}
+    \begin{align*}
+        E \Big[ R_n (\hat{\theta}) \Big] &= \frac{1}{n}  E \Big [  || (I_n - X (X^T X)^{-1} X^T) \epsilon  ||^2 \Big ] \\
+            &= E \Big [ \frac{1}{n}    || (I_n - X (X^T X)^{-1} X^T) \epsilon  ||^2 \Big ]
+    \end{align*}
+    
+\end{proof}
+
+\question{2}
+
+Let $A \in \R ^{n, n}$ . Show that
+
+\begin{equation}\label{eq:exo2}
+    \sum_{(i, j)  \in [1, n]^2} A^2_{ij} = \mathrm {Tr} (A^T A)
+\end{equation}
+
+
+
+\begin{proof}
+    \begin{equation}
+        \mathrm {Tr} (A) =\sum _{i\in[1, n]} a_{{i\,i}}
+    \end{equation}
+    
+    \begin{align*}
+        \mathrm {Tr} (A^T A) = \sum_{i \in [1, n]} (A^T A)_{ii}
+    \end{align*}
+
+    Because A is a square matrix
+    \begin{align*}
+        (A^T A)_{ii} &= \sum_{j \in [1, n]} (A^T)_{ij} A_{ji} \\
+            &= \sum_{j \in [1, n]} A_{ji} A_{ji}\\
+            &= \sum_{j \in [1, n]} (A_{ji})^2
+    \end{align*}
+
+    \begin{align*}
+         \mathrm {Tr} (A^T A) &= \sum_{i \in [1, n]}  \sum_{j \in [1, n]} (A_{ji})^2\\
+            &= \sum_{(i, j)  \in [1, n]^2} A^2_{ij}      
+    \end{align*}
+\end{proof}
+
+\question{3}
+
+Show that 
+
+\begin{equation} \label{eq:exo3}
+    E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] = \frac{\sigma^2}{n} \mathrm {Tr} (A^T A)
+\end{equation}
+
+\begin{proof}
+    \begin{align*}
+        E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] &= 
+            \frac{1}{n} \| A \|^2 E_\epsilon \Big[  \| \epsilon \|^2 \Big]
+    \end{align*}
+
+    Since
+    \begin{equation}
+        Var(X) = E(X^2) - E^2(X) 
+    \end{equation}
+    and
+    \begin{equation}
+        E_\epsilon (\epsilon) = 0
+    \end{equation}
+
+    \begin{align*}
+        E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] &=            \frac{1}{n} \| A \|^2 E_\epsilon \Big[ \epsilon ^2 \Big]\\
+            &= \frac{\sigma^2}{n} \| A \|^2
+    \end{align*}
+    
+    Because of \eqref{eq:exo2}
+    
+    \begin{align*}
+        E_\epsilon \Big[ \frac{1}{n} ||A\epsilon ||^2 \Big] &=  \frac{\sigma^2}{n} \mathrm {Tr} (A^T A)
+    \end{align*}
+\end{proof}
+
+\question{4}
+
+We note
+
+\begin{equation} \label{eq:exo4}
+    A = I_n - X (X^T X)^{-1} X^T
+\end{equation}
+
+Show that
+
+\begin{equation}
+    A^T A = A
+\end{equation}
+
+\begin{proof}
+    \begin{align*}
+        A^T &= (I_n - X (X^T X)^{-1} X^T)^T\\
+            &= I_n^T - ((X (X^T X)^{-1}) X^T)^T\\
+            &= I_n - X (X (X^T X)^{-1})^T\\
+            &= I_n - X (X^T X)^{-T} X^T\\
+            &= I_n - X (X^T X)^{-1} X^T\\
+            &= A
+    \end{align*}
+    
+    \begin{align*}
+        A^T A &= (I_n - X (X^T X)^{-1} X^T)^2\\
+            &= I_n - X (X^T X)^{-1} X^T - X (X^T X)^{-1} X^T + X (X^T X)^{-1} X^TX (X^T X)^{-1} X^T\\
+            &=  I_n - X (X^T X)^{-1} X^T - X (X^T X)^{-1} X^T + X (X^T X)^{-1} X^T\\
+            &=  I_n - X (X^T X)^{-1} X^T\\
+            &= A
+    \end{align*}
+\end{proof}
+
+\question{5}
+
+Conclude that
+
+\begin{equation}
+     E \Big[ R_n (\hat{\theta}) \Big] = \frac{n - d}{n} \sigma^2 
+\end{equation}
+
+\begin{proof}
+    We proved that \eqref{eq:exo1} and \eqref{eq:exo3} so
+    \begin{align*}
+        E \Big[ R_n (\hat{\theta}) \Big] = \frac{\sigma^2}{n} \mathrm {Tr} (A^T A)
+    \end{align*}
+
+    And with \eqref{eq:exo4}
+    \begin{align*}
+        E \Big[ R_n (\hat{\theta}) \Big] &=\frac{\sigma^2}{n}  \mathrm {Tr} (A)\\
+            &= \frac{\sigma^2}{n} \mathrm {Tr} (I_n - X (X^T X)^{-1} X^T)
+    \end{align*}
+
+    \begin{equation}
+        \mathrm {Tr} (A + B) =\mathrm {Tr} (A) + \mathrm {Tr} (B)
+    \end{equation}
+    \begin{equation}
+        \mathrm {Tr} (AB) = \mathrm {Tr} (BA)
+    \end{equation}
+
+    \begin{align*}
+        E \Big[ R_n (\hat{\theta}) \Big]
+            &= \frac{\sigma^2}{n} (\mathrm {Tr} (I_n) - \mathrm {Tr} (X (X^T X)^{-1} X^T))\\
+            &= \frac{\sigma^2}{n} (n - \mathrm {Tr} (X^TX (X^T X)^{-1}))\\
+            &= \frac{\sigma^2}{n} (n - \mathrm {Tr} (I_d))\\
+            &= \frac{\sigma^2}{n} (n - d)\\
+            &= \frac{n - d}{n} \sigma^2\\
+    \end{align*}
+\end{proof}
+
+\question{6}
+
+Still in the same setting, what is the expected value of $\frac{\| y - X \hat{\theta} \|_2^2}{n - d}$
+
+\begin{align*}
+    E \Big [ \frac{\| y - X \hat{\theta} \|_2^2}{n - d} \Big ] &= \frac{n}{n - d} E \Big [ R_n(\hat{\theta}) \Big ]\\
+        &= \frac{n}{n-d} \frac{n - d}{n} \sigma^2\\
+        &= \sigma^2
+\end{align*}

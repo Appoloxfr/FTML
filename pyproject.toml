@@ -16,6 +16,8 @@ tqdm = "^4.65.0"
 scikit-learn = "^1.2.2"
 ipywidgets = "^8.0.6"
 black = "^23.3.0"
+seaborn = "^0.12.2"
+gap-stat = "^2.0.2"
 
 
 [build-system]
